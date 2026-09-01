@@ -7,7 +7,7 @@ import { AboutSection } from './components/home/AboutSection';
 import { ProgramsSection } from './components/home/ProgramsSection';
 import { WhyChooseUsSection } from './components/home/WhyChooseUsSection';
 import { AdmissionsCTASection } from './components/home/AdmissionsCTASection';
-import { GallerySection } from './components/home/GallerySection';
+import { FacilitiesSection } from './components/home/FacilitiesSection';
 import { ContactSection } from './components/home/ContactSection';
 import { Footer } from './components/Footer';
 
@@ -86,8 +86,8 @@ function AppContent() {
           {/* 7. Admissions CTA Foundation */}
           <AdmissionsCTASection />
 
-          {/* 8. Gallery Foundation */}
-          <GallerySection />
+          {/* 8. Facilities & Campus Environment Foundation */}
+          <FacilitiesSection />
 
           {/* 9. Contact Foundation */}
           <ContactSection />

@@ -29,11 +29,11 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
   className = '',
   delay = 0,
   direction = 'up',
-  distance = 26,
-  duration = 580,
+  distance = 22,
+  duration = 540,
   easing = 'spring',
-  threshold = 0.08,
-  once = false, // Dynamic re-triggering for seamless live scroll interactivity
+  threshold = 0.05,
+  once = true, // Once animated into view, stays stable and buttery smooth without unmounting glitches
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -44,9 +44,9 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
 
     let isMounted = true;
 
-    // Check if element is in viewport on initial load
+    // Check if element is already in viewport on initial load or fast scroll
     const rect = currentEl.getBoundingClientRect();
-    const isInInitialView = rect.top < window.innerHeight && rect.bottom > 0;
+    const isInInitialView = rect.top < window.innerHeight * 1.15 && rect.bottom > -50;
     if (isInInitialView) {
       setIsVisible(true);
       if (once) return;
@@ -65,20 +65,17 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
           if (once) {
             observer.unobserve(entry.target);
           }
-        } else {
-          // Smooth reset when scrolled out so it feels alive on return
-          if (!once) {
-            window.requestAnimationFrame(() => {
-              if (isMounted) {
-                setIsVisible(false);
-              }
-            });
-          }
+        } else if (!once) {
+          window.requestAnimationFrame(() => {
+            if (isMounted) {
+              setIsVisible(false);
+            }
+          });
         }
       },
       {
         threshold,
-        rootMargin: '40px 0px -40px 0px', // Optimal optical reading viewport buffer
+        rootMargin: '60px 0px 40px 0px',
       }
     );
 

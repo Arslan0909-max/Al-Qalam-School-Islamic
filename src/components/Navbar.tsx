@@ -9,6 +9,7 @@ export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHeaderHidden, setIsHeaderHidden] = useState(false);
   const [isHeaderHovered, setIsHeaderHovered] = useState(false);
+  const [detachProgress, setDetachProgress] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileMenuMounted, setMobileMenuMounted] = useState(false);
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
@@ -22,7 +23,7 @@ export const Navbar: React.FC = () => {
     { label: t.nav.about, href: '#about' },
     { label: t.nav.programs, href: '#programs' },
     { label: t.nav.whyUs, href: '#why-us' },
-    { label: t.nav.gallery, href: '#gallery' },
+    { label: t.nav.facilities, href: '#facilities' },
     { label: t.nav.contact, href: '#contact' },
   ];
 
@@ -70,20 +71,27 @@ export const Navbar: React.FC = () => {
         window.requestAnimationFrame(() => {
           const currentScrollY = window.scrollY;
           const lastScrollY = lastScrollYRef.current;
+          const scrollDelta = currentScrollY - lastScrollY;
 
-          // Smooth hysteresis threshold
-          if (currentScrollY <= 25) {
+          // 1. Direct Scroll-Linked Detachment Progress:
+          // Between scroll 0px (top of home) and 80px (full detachment), progress goes 0.0 -> 1.0 continuously with scroll
+          const progress = Math.min(Math.max(currentScrollY / 80, 0), 1);
+          setDetachProgress(progress);
+
+          // 2. Home Section & Header State
+          if (currentScrollY <= 8) {
             setIsScrolled(false);
             setIsHeaderHidden(false);
             setActiveSection('home');
           } else {
             setIsScrolled(true);
             
-            // Header animation: When scrolling down, header slides up and corner logo pins
-            if (currentScrollY > 70 && currentScrollY > lastScrollY + 4 && !mobileMenuOpen) {
+            // 3. Header Slide-Up only occurs when user scrolls deeper down (past 140px)
+            // The floating logo stays firmly locked in position across all page scrolling.
+            if (currentScrollY > 140 && scrollDelta > 5 && !mobileMenuOpen) {
               setIsHeaderHidden(true);
-            } else if (currentScrollY < lastScrollY - 6) {
-              // When scrolling up, smoothly reveal the header
+            } else if (scrollDelta < -5) {
+              // When scrolling back up, header smoothly reveals
               setIsHeaderHidden(false);
             }
           }
@@ -163,6 +171,9 @@ export const Navbar: React.FC = () => {
   const springEase = 'cubic-bezier(0.34, 1.48, 0.58, 1)';
   const punchyEase = 'cubic-bezier(0.28, 1.55, 0.52, 1)';
 
+  // Continuous Hermite smoothstep for 1:1 butter-smooth scroll response (0 at top of home, 1 when detached)
+  const easedProgress = detachProgress * detachProgress * (3 - 2 * detachProgress);
+
   return (
     <>
       {/* 
@@ -175,25 +186,28 @@ export const Navbar: React.FC = () => {
       />
 
       {/* 
-        Floating Corner Pinned Logo (Anchored in the corner when header slides up on scroll)
-        Bounces into place and stays fixed in corner with luxury golden glass badge
+        Floating Corner Pinned Logo:
+        - Directly & smoothly linked 1:1 with scroll position.
+        - As user scrolls from 0 to 80px, it drops down softly into position.
+        - Once detached (scrollY >= 80px), it stays 100% fixed & firmly locked in the corner throughout all page exploration (scroll up or down).
+        - It ONLY smoothly merges back when scrolling reaches all the way back to the Home section top.
       */}
       <div
-        className={`fixed z-50 top-3.5 sm:top-4 transition-all duration-300 pointer-events-auto ${
-          isUrdu ? 'right-3.5 sm:right-6' : 'left-3.5 sm:left-6'
-        } ${
-          isHeaderHidden && !mobileMenuOpen
-            ? 'opacity-100 scale-100 pointer-events-auto'
-            : 'opacity-0 scale-75 pointer-events-none -translate-y-4'
+        className={`fixed z-50 top-3 sm:top-3.5 pointer-events-auto transition-[filter,box-shadow] duration-200 ${
+          isUrdu ? 'right-4 sm:right-6 lg:right-8 xl:right-12' : 'left-4 sm:left-6 lg:left-8 xl:left-12'
         }`}
+        style={{
+          opacity: detachProgress > 0.01 ? Math.min(easedProgress * 1.15, 1) : 0,
+          transform: `translate3d(0, ${(easedProgress - 1) * 14}px, 0) scale(${0.88 + easedProgress * 0.12})`,
+          pointerEvents: detachProgress > 0.08 && !mobileMenuOpen ? 'auto' : 'none',
+          willChange: 'transform, opacity',
+        }}
       >
         <a
           href="#home"
           onClick={(e) => handleNavClick(e, '#home')}
           title={isUrdu ? 'واپس اوپر جائیں (Al-Qalam)' : 'Back to Top (Al-Qalam)'}
-          className={`group relative flex items-center justify-center p-1.5 sm:p-2 rounded-2xl bg-[#3A0505]/85 hover:bg-[#3A0505]/95 backdrop-blur-2xl border border-[#D4AF37]/50 shadow-[0_10px_28px_rgba(0,0,0,0.65),0_0_16px_rgba(212,175,55,0.35),inset_0_1px_1px_rgba(255,255,255,0.35)] hover:shadow-[0_12px_32px_rgba(212,175,55,0.55)] hover:border-[#D4AF37] hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer ${
-            isHeaderHidden && !mobileMenuOpen ? 'animate-logo-dock' : ''
-          }`}
+          className="group relative flex items-center justify-center p-1.5 sm:p-2 bg-[#3A0505]/92 hover:bg-[#3A0505] backdrop-blur-2xl border border-[#D4AF37]/50 shadow-[0_8px_24px_rgba(0,0,0,0.55),0_0_12px_rgba(212,175,55,0.25),inset_0_1px_1px_rgba(255,255,255,0.3)] hover:shadow-[0_10px_28px_rgba(212,175,55,0.45)] hover:border-[#D4AF37] hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer rounded-2xl"
           onMouseEnter={() => setIsHeaderHovered(true)}
         >
           <div className="relative">
@@ -214,7 +228,7 @@ export const Navbar: React.FC = () => {
               />
             </div>
             {/* Luminous Warm Golden Backlight Glow on hover */}
-            <div className="absolute -inset-1 bg-gradient-to-tr from-[#D4AF37]/40 via-white/15 to-transparent rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+            <div className="absolute -inset-1 bg-gradient-to-tr from-[#D4AF37]/30 via-white/10 to-transparent rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
           </div>
         </a>
       </div>
@@ -289,12 +303,15 @@ export const Navbar: React.FC = () => {
               onClick={(e) => handleNavClick(e, '#home')}
               className="group flex items-center focus:outline-none focus:ring-2 focus:ring-[#D4AF37] rounded-2xl p-0.5 sm:p-1 active:scale-95 transition-transform duration-200"
             >
-              {/* 1. Independent Springing Circular Logo Badge */}
+              {/* 1. Seamless Scroll-Linked Circular Logo Badge */}
               <div
                 className="relative z-40 flex items-center justify-center bg-[#3A0505]/75 backdrop-blur-xl rounded-2xl p-1.5 border border-white/20 shadow-[0_4px_16px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.25)] origin-left group-hover:border-[#D4AF37]/60 group-hover:shadow-[0_4px_20px_rgba(212,175,55,0.35)]"
                 style={{
-                  transform: isCompact ? 'scale(0.86)' : 'scale(1)',
-                  transition: `transform 520ms ${punchyEase}, border-color 300ms ease, box-shadow 300ms ease`,
+                  transform: `scale(${1 - easedProgress * 0.1}) translate3d(0, ${easedProgress * 4}px, 0)`,
+                  opacity: Math.max(1 - easedProgress * 1.15, 0),
+                  pointerEvents: easedProgress > 0.85 ? 'none' : 'auto',
+                  transition: 'border-color 300ms ease, box-shadow 300ms ease',
+                  willChange: 'transform, opacity',
                 }}
               >
                 <div className="block sm:hidden">
