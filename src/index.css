@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --font-display: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-arabic: "Amiri", "Traditional Arabic", serif;
+
+  --color-burgundy: #650B0B;
+  --color-maroon: #3A0505;
+  --color-rich-red: #8B0000;
+  --color-gold: #D4AF37;
+  --color-gold-light: #F2C94C;
+  --color-gold-deep: #B8860B;
+  --color-ivory: #FAF8F3;
+  --color-warm-cream: #F3EFE7;
+  --color-islamic-green: #08783F;
+  --color-dark-text: #171717;
+  --color-muted-text: #666666;
+}
+
+:root {
+  --color-maroon: #3A0505;
+  --color-burgundy: #650B0B;
+  --color-gold: #D4AF37;
+  --color-ivory: #FAF8F3;
+  --color-cream: #F3EFE7;
+}
+
+/* Clean Minimalism Utility Classes */
+.serif {
+  font-family: var(--font-serif);
+}
+
+.gold-border {
+  border: 1px solid #D4AF37;
+}
+
+.burgundy-bg {
+  background-color: #650B0B;
+}
+
+.text-gold {
+  color: #D4AF37;
+}
+
+.text-burgundy {
+  color: #650B0B;
+}
+
+/* Clean Minimalism Dot Grid Canvas */
+.bg-islamic-grid {
+  background-image: radial-gradient(rgba(212, 175, 55, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Clean Minimalism Dark Geometric Background Pattern */
+.bg-islamic-dark-grid {
+  background-color: #3A0505;
+  background-image: radial-gradient(rgba(212, 175, 55, 0.12) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.geometric-pattern {
+  background-color: #650B0B;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l5 25 25 5-25 5-5 25-5-25-25-5 25-5z' fill='%23D4AF37' fill-opacity='0.05'/%3E%3C/svg%3E");
+}
+
+/* Subtle luxury gold border styling */
+.gold-border-glow {
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  box-shadow: 0 0 15px -3px rgba(212, 175, 55, 0.15);
+}
+
+.gold-gradient-border {
+  border-image: linear-gradient(to bottom, #D4AF37, rgba(212, 175, 55, 0.2), #D4AF37) 1;
+}
+
+/* Typography styles */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  letter-spacing: -0.01em;
+}
+
+html {
+  scroll-padding-top: 5.5rem;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF8F3;
+}
+::-webkit-scrollbar-thumb {
+  background: #650B0B;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D4AF37;
+}
+
+@keyframes shimmerGlow {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+.animate-shimmer-glow {
+  animation: shimmerGlow 2.5s infinite;
+}
+
+/* Subtle Interactive Punchy & Soft Bounced Depth FX */
+.card-depth-hover {
+  transition: transform 450ms cubic-bezier(0.34, 1.45, 0.64, 1), box-shadow 400ms ease, border-color 300ms ease;
+  will-change: transform;
+}
+
+.card-depth-hover:hover {
+  transform: translateY(-5px) scale(1.015);
+  box-shadow: 0 20px 36px -8px rgba(0, 0, 0, 0.14), 0 0 20px -2px rgba(212, 175, 55, 0.22);
+}
+
+.card-depth-hover:active {
+  transform: translateY(-1px) scale(0.985);
+  transition-duration: 150ms;
+}
+
+.dark-card-depth-hover {
+  transition: transform 450ms cubic-bezier(0.34, 1.45, 0.64, 1), box-shadow 400ms ease, border-color 300ms ease;
+  will-change: transform;
+}
+
+.dark-card-depth-hover:hover {
+  transform: translateY(-5px) scale(1.015);
+  box-shadow: 0 22px 40px -8px rgba(0, 0, 0, 0.5), 0 0 22px -2px rgba(212, 175, 55, 0.32);
+}
+
+.dark-card-depth-hover:active {
+  transform: translateY(-1px) scale(0.985);
+  transition-duration: 150ms;
+}
+
+.interactive-bounce {
+  transition: transform 400ms cubic-bezier(0.34, 1.45, 0.64, 1);
+}
+
+.interactive-bounce:hover {
+  transform: translateY(-3px) scale(1.03);
+}
+
+.interactive-bounce:active {
+  transform: translateY(0) scale(0.96);
+}
+
+.text-soft-glow {
+  transition: text-shadow 0.3s ease, color 0.3s ease;
+}
+
+.text-soft-glow:hover {
+  text-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
+}
+
+

@@ -1,0 +1,8 @@
+{
+  "name": "Remix Alqalam Islamic School",
+  "description": "Premium modern Islamic school website foundation embodying traditional Islamic values and modern academic excellence.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
