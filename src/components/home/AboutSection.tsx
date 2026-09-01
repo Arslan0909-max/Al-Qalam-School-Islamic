@@ -67,7 +67,7 @@ export const AboutSection: React.FC = () => {
           <div className="lg:col-span-7">
             <div className="grid grid-cols-2 sm:grid-cols-2 gap-4 sm:gap-6">
               {ABOUT_METRICS.map((metric, idx) => (
-                <ScrollReveal key={metric.id} direction="up" delay={idx * 35} duration={320}>
+                <ScrollReveal key={metric.id} direction="up" delay={idx * 60} duration={550}>
                   <div
                     className="relative bg-[#650B0B]/60 border border-[#D4AF37]/35 rounded-sm p-6 sm:p-7 text-center backdrop-blur-sm dark-card-depth-hover group"
                   >

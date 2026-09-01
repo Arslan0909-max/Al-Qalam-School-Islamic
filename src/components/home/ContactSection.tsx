@@ -33,7 +33,7 @@ export const ContactSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
           {/* Contact Details Card with Dark Depth */}
           <div className="lg:col-span-5 flex flex-col">
-            <ScrollReveal direction="right" delay={0} duration={320} className="h-full">
+            <ScrollReveal direction="right" delay={0} duration={600} className="h-full">
               <div className="bg-[#3A0505] text-[#FAF8F3] p-8 sm:p-9 rounded-sm border border-[#D4AF37]/40 shadow-xl flex flex-col justify-between relative overflow-hidden h-full group hover:border-[#D4AF37] transition-colors duration-400">
                 <div className="absolute inset-0 bg-islamic-dark-grid opacity-20 pointer-events-none" />
 
@@ -119,7 +119,7 @@ export const ContactSection: React.FC = () => {
 
           {/* Quick Inquiry Form with Soft Entrance & Depth */}
           <div className="lg:col-span-7 flex flex-col">
-            <ScrollReveal direction="left" delay={20} duration={320} className="h-full">
+            <ScrollReveal direction="left" delay={60} duration={600} className="h-full">
               <div className="bg-white p-8 sm:p-9 rounded-sm border border-[#D4AF37]/30 shadow-md card-depth-hover flex flex-col justify-between h-full">
                 <div>
                   <h3 className="serif text-2xl font-bold text-[#3A0505] mb-2">

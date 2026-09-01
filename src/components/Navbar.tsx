@@ -6,7 +6,6 @@ import { NAV_ITEMS, SITE_CONFIG } from '../constants/siteData';
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHeaderHovered, setIsHeaderHovered] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileMenuMounted, setMobileMenuMounted] = useState(false);
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
@@ -53,11 +52,6 @@ export const Navbar: React.FC = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const currentScrollY = window.scrollY;
-
-          // Calculate overall page scroll progress
-          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-          const progress = docHeight > 0 ? (currentScrollY / docHeight) * 100 : 0;
-          setScrollProgress(Math.min(100, Math.max(0, progress)));
 
           // If user explicitly clicked Home to go to top, handle smoothly
           if (currentScrollY <= 25) {
@@ -163,17 +157,6 @@ export const Navbar: React.FC = () => {
       >
         {/* Specular Liquid Top Light Edge */}
         <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" />
-
-        {/* Dynamic Glowing Gold Scroll Progress Indicator */}
-        <div className="absolute bottom-0 inset-x-0 h-[2px] bg-black/20 pointer-events-none overflow-hidden">
-          <div
-            className="h-full bg-gradient-to-r from-[#F2C94C] via-[#D4AF37] to-[#FFF3B0] transition-all duration-150 ease-out relative"
-            style={{ width: `${scrollProgress}%` }}
-          >
-            {/* Glowing tip light */}
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-[#FFF3B0] rounded-full blur-[2px] opacity-80" />
-          </div>
-        </div>
 
         {/* Ambient Depth Underglow (reveals softly during scroll) */}
         <div

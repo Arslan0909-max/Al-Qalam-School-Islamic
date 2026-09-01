@@ -110,7 +110,7 @@ export const HeroSection: React.FC = () => {
 
           {/* RIGHT COLUMN: Redesigned Islamic Arch Hero Showcase */}
           <div className="lg:col-span-5 relative flex justify-center items-center">
-            <ScrollReveal direction="none" delay={250} duration={900}>
+            <ScrollReveal direction="zoom" delay={120} duration={650}>
               {/* Ambient Gold Glow & Geometric Backing */}
               <div className="absolute -inset-4 bg-gradient-to-tr from-[#D4AF37]/20 to-[#650B0B]/10 rounded-3xl blur-2xl pointer-events-none" />
               

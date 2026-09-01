@@ -40,7 +40,7 @@ export const WhyChooseUsSection: React.FC = () => {
         {/* 4 Pillars Grid with Staggered Entrance & Dark Card Depth Hover */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {WHY_CHOOSE_US_PILLARS.map((pillar, idx) => (
-            <ScrollReveal key={pillar.id} direction="up" delay={idx * 35} duration={320}>
+            <ScrollReveal key={pillar.id} direction="up" delay={idx * 60} duration={550}>
               <div
                 className="bg-[#650B0B]/50 border border-[#D4AF37]/30 rounded-sm p-6 sm:p-7 text-center backdrop-blur-sm dark-card-depth-hover group flex flex-col items-center h-full"
               >

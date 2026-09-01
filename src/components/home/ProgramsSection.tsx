@@ -40,7 +40,7 @@ export const ProgramsSection: React.FC = () => {
         {/* 4 Cards Grid with Staggered Soft Entrance */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {CORE_PROGRAMS.map((prog, idx) => (
-            <ScrollReveal key={prog.id} direction="up" delay={idx * 35} duration={320}>
+            <ScrollReveal key={prog.id} direction="up" delay={idx * 60} duration={550}>
               <div
                 className="bg-white rounded-sm p-7 border border-[#D4AF37]/30 card-depth-hover flex flex-col justify-between text-center group relative overflow-hidden h-full shadow-sm"
               >

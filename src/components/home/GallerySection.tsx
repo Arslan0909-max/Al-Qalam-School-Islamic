@@ -23,7 +23,7 @@ export const GallerySection: React.FC = () => {
         {/* Gallery Grid with Soft Staggered Scroll In */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {GALLERY_ITEMS.map((item, idx) => (
-            <ScrollReveal key={item.id} direction="up" delay={idx * 30} duration={300}>
+            <ScrollReveal key={item.id} direction="up" delay={idx * 50} duration={550}>
               <ImageCard
                 src={item.image}
                 alt={item.title}

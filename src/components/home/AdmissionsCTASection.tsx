@@ -11,7 +11,7 @@ export const AdmissionsCTASection: React.FC = () => {
   return (
     <Section id="admissions" bg="ivory" withPattern={true} padding="normal">
       <Container>
-        <ScrollReveal direction="up" delay={0} duration={320}>
+        <ScrollReveal direction="zoom" delay={0} duration={600}>
           <div className="relative bg-gradient-to-br from-[#3A0505] via-[#650B0B] to-[#3A0505] text-[#FAF8F3] rounded-sm p-8 sm:p-12 lg:p-14 border border-[#D4AF37] shadow-2xl overflow-hidden group hover:border-[#F2C94C] transition-colors duration-500">
             {/* Corner Ornaments */}
             <CornerOrnament position="top-left" color="#D4AF37" className="top-2 left-2 opacity-80 group-hover:opacity-100 transition-opacity" />
