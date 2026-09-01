@@ -5,9 +5,38 @@ import { Section } from '../ui/Section';
 import { Button } from '../ui/Button';
 import { CornerOrnament } from '../ui/GeometricDecoration';
 import { ScrollReveal } from '../ui/ScrollReveal';
-import { ABOUT_METRICS } from '../../constants/siteData';
+import { useLanguage } from '../../context/LanguageContext';
 
 export const AboutSection: React.FC = () => {
+  const { isUrdu, t } = useLanguage();
+
+  const metrics = [
+    {
+      id: 'students',
+      value: isUrdu ? 'پلے گروپ تا 5th' : 'Playgroup - 5th',
+      label: t.about.metricStudents,
+      description: t.about.metricStudentsDesc,
+    },
+    {
+      id: 'staff',
+      value: isUrdu ? '100% مستند' : '100% Certified',
+      label: t.about.metricStaff,
+      description: t.about.metricStaffDesc,
+    },
+    {
+      id: 'excellence',
+      value: isUrdu ? 'شاندار رزلٹ' : 'Excellence',
+      label: t.about.metricYears,
+      description: t.about.metricYearsDesc,
+    },
+    {
+      id: 'environment',
+      value: isUrdu ? 'خالص اسلامی' : 'Pure Islamic',
+      label: t.about.metricEnv,
+      description: t.about.metricEnvDesc,
+    },
+  ];
+
   return (
     <Section id="about" bg="maroon" withPattern={true} padding="normal">
       <Container>
@@ -18,16 +47,16 @@ export const AboutSection: React.FC = () => {
               <div className="flex items-center gap-3 group cursor-default">
                 <div className="w-10 h-[1px] bg-[#D4AF37] transition-all duration-300 group-hover:w-14"></div>
                 <span className="text-[12px] uppercase tracking-[0.3em] text-[#D4AF37] font-semibold">
-                  About Our Institution
+                  {t.about.kicker}
                 </span>
               </div>
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={20}>
               <h2 className="serif text-4xl sm:text-5xl font-bold text-[#FAF8F3] leading-[1.15]">
-                About Alqalam
+                {t.about.headingPrefix}
                 <br />
-                <span className="text-[#D4AF37] text-soft-glow inline-block">Islamic School</span>
+                <span className="text-[#D4AF37] text-soft-glow inline-block">{t.about.headingHighlight}</span>
               </h2>
             </ScrollReveal>
 
@@ -37,13 +66,13 @@ export const AboutSection: React.FC = () => {
 
             <ScrollReveal direction="up" delay={40}>
               <p className="text-base sm:text-lg text-[#FAF8F3]/90 leading-relaxed font-normal">
-                We aim to develop students academically, spiritually and socially in an authentic Islamic environment. Our vision is to raise righteous individuals who excel in modern academics while contributing positively to society.
+                {t.about.p1}
               </p>
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={50}>
               <p className="text-sm text-[#FAF8F3]/75 leading-relaxed">
-                Founded on the principles of Quranic guidance and contemporary pedagogies, our institution fosters an atmosphere where curiosity, moral discipline, and intellectual rigor flourish together.
+                {t.about.p2}
               </p>
             </ScrollReveal>
 
@@ -54,10 +83,15 @@ export const AboutSection: React.FC = () => {
                   size="md"
                   asLink
                   href="#programs"
-                  icon={<ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-1" />}
+                  icon={
+                    <ArrowRight
+                      size={16}
+                      className={`transition-transform duration-200 ${isUrdu ? 'group-hover:-translate-x-1 rotate-180' : 'group-hover:translate-x-1'}`}
+                    />
+                  }
                   className="shadow-lg shadow-black/30 font-semibold uppercase tracking-widest text-[12px] px-8 py-3.5 rounded-sm hover:scale-[1.03] active:scale-95 transition-all duration-300 group"
                 >
-                  Explore Programs
+                  {t.about.button}
                 </Button>
               </div>
             </ScrollReveal>
@@ -66,7 +100,7 @@ export const AboutSection: React.FC = () => {
           {/* Right Column: 4 Key Metric Cards with staggered soft depth */}
           <div className="lg:col-span-7">
             <div className="grid grid-cols-2 sm:grid-cols-2 gap-4 sm:gap-6">
-              {ABOUT_METRICS.map((metric, idx) => (
+              {metrics.map((metric, idx) => (
                 <ScrollReveal key={metric.id} direction="up" delay={idx * 60} duration={550}>
                   <div
                     className="relative bg-[#650B0B]/60 border border-[#D4AF37]/35 rounded-sm p-6 sm:p-7 text-center backdrop-blur-sm dark-card-depth-hover group"
@@ -82,7 +116,7 @@ export const AboutSection: React.FC = () => {
                     </div>
 
                     {/* Value */}
-                    <div className="serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#FAF8F3] tracking-tight mb-1 group-hover:text-[#D4AF37] transition-colors">
+                    <div className="serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#FAF8F3] tracking-tight mb-1 group-hover:text-[#D4AF37] transition-colors">
                       {metric.value}
                     </div>
 

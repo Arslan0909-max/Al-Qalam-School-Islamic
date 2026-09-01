@@ -66,13 +66,13 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
 }) => {
   const themeStyles = {
     light:
-      'bg-white text-[#171717] border border-[#D4AF37]/25 shadow-sm hover:shadow-md hover:border-[#D4AF37]/60 hover:-translate-y-1',
+      'bg-white text-[#171717] border border-[#D4AF37]/25 shadow-sm hover:shadow-[0_14px_30px_-6px_rgba(0,0,0,0.12),0_0_20px_rgba(212,175,55,0.25)] hover:border-[#D4AF37] hover:-translate-y-1.5',
     dark:
-      'bg-[#3A0505] text-[#FAF8F3] border border-[#D4AF37]/30 shadow-md hover:border-[#D4AF37] hover:-translate-y-1',
+      'bg-[#3A0505] text-[#FAF8F3] border border-[#D4AF37]/30 shadow-md hover:border-[#F2C94C] hover:shadow-[0_16px_36px_-6px_rgba(0,0,0,0.6),0_0_24px_rgba(212,175,55,0.35)] hover:-translate-y-1.5',
     maroon:
-      'bg-[#650B0B] text-white border border-[#D4AF37]/30 shadow-md hover:border-[#D4AF37] hover:-translate-y-1',
+      'bg-[#650B0B] text-white border border-[#D4AF37]/35 shadow-md hover:border-[#F2C94C] hover:shadow-[0_16px_36px_-6px_rgba(0,0,0,0.6),0_0_24px_rgba(212,175,55,0.35)] hover:-translate-y-1.5',
     'gold-accent':
-      'bg-[#FAF8F3] text-[#3A0505] border-2 border-[#D4AF37]/40 shadow-sm hover:border-[#D4AF37] hover:-translate-y-1',
+      'bg-[#FAF8F3] text-[#3A0505] border-2 border-[#D4AF37]/40 shadow-sm hover:border-[#D4AF37] hover:shadow-[0_14px_30px_-6px_rgba(212,175,55,0.25)] hover:-translate-y-1.5',
   };
 
   const isDark = theme === 'dark' || theme === 'maroon';

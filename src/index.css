@@ -5,6 +5,7 @@
   --font-display: "Cormorant Garamond", "Playfair Display", Georgia, serif;
   --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-arabic: "Amiri", "Traditional Arabic", serif;
+  --font-urdu: "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", "Urdu Typesetting", "Amiri", serif;
 
   --color-burgundy: #650B0B;
   --color-maroon: #3A0505;
@@ -25,6 +26,25 @@
   --color-gold: #D4AF37;
   --color-ivory: #FAF8F3;
   --color-cream: #F3EFE7;
+}
+
+/* Urdu and RTL Smooth Styling */
+[dir="rtl"] {
+  text-align: right;
+  font-family: var(--font-urdu), var(--font-sans);
+}
+
+[dir="rtl"] .serif {
+  font-family: var(--font-urdu), var(--font-serif);
+  line-height: 1.6;
+}
+
+[dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3 {
+  line-height: 1.5;
+}
+
+.font-urdu {
+  font-family: "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", "Amiri", serif;
 }
 
 /* Clean Minimalism Utility Classes */
@@ -66,10 +86,17 @@
   background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l5 25 25 5-25 5-5 25-5-25-25-5 25-5z' fill='%23D4AF37' fill-opacity='0.05'/%3E%3C/svg%3E");
 }
 
-/* Subtle luxury gold border styling */
+/* Subtle luxury gold border styling with gentle ambient radiance */
 .gold-border-glow {
-  border: 1px solid rgba(212, 175, 55, 0.4);
-  box-shadow: 0 0 15px -3px rgba(212, 175, 55, 0.15);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  box-shadow: 0 0 18px -2px rgba(212, 175, 55, 0.22), inset 0 1px 1px 0 rgba(255, 255, 255, 0.15);
+  transition: all 400ms cubic-bezier(0.34, 1.45, 0.64, 1);
+}
+
+.gold-border-glow:hover {
+  border-color: rgba(242, 201, 76, 0.9);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.6), 0 0 28px 2px rgba(212, 175, 55, 0.42), inset 0 1px 1px 0 rgba(255, 255, 255, 0.35);
+  transform: translateY(-6px) scale(1.02);
 }
 
 .gold-gradient-border {
@@ -160,5 +187,82 @@ html {
 .text-soft-glow:hover {
   text-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
 }
+
+/* Apple iOS Hello-to-Home Screen Language Transition Animation */
+@keyframes iosHelloWake {
+  0% {
+    opacity: 0.35;
+    filter: blur(14px);
+    transform: scale(0.93) translateY(22px);
+  }
+  45% {
+    opacity: 0.85;
+    filter: blur(4px);
+    transform: scale(0.985) translateY(5px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-ios-wake {
+  animation: iosHelloWake 750ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity, filter;
+}
+
+@keyframes maroonPulse {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+.animate-maroon-pulse {
+  animation: maroonPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes spinnerRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-ios-spinner {
+  animation: spinnerRotate 700ms cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Floating Corner Logo Spring Bounce Dock Animation */
+@keyframes logoCornerDock {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.6);
+  }
+  55% {
+    opacity: 1;
+    transform: translateY(8px) scale(1.12);
+  }
+  78% {
+    transform: translateY(-3px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-logo-dock {
+  animation: logoCornerDock 560ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  will-change: transform, opacity;
+}
+
 
 

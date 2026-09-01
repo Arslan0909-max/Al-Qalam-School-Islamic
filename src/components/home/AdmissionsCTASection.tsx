@@ -1,13 +1,15 @@
 import React from 'react';
-import { Calendar, Phone, ArrowRight, CheckCircle2, Download } from 'lucide-react';
+import { Phone, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Container } from '../ui/Container';
 import { Section } from '../ui/Section';
-import { PrimaryButton, SecondaryButton } from '../ui/Button';
 import { IslamicStar, CornerOrnament } from '../ui/GeometricDecoration';
 import { ScrollReveal } from '../ui/ScrollReveal';
 import { SITE_CONFIG } from '../../constants/siteData';
+import { useLanguage } from '../../context/LanguageContext';
 
 export const AdmissionsCTASection: React.FC = () => {
+  const { isUrdu, t } = useLanguage();
+
   return (
     <Section id="admissions" bg="ivory" withPattern={true} padding="normal">
       <Container>
@@ -30,37 +32,37 @@ export const AdmissionsCTASection: React.FC = () => {
                 <div className="flex items-center gap-2.5">
                   <div className="w-8 h-[1px] bg-[#D4AF37]"></div>
                   <span className="text-[12px] uppercase tracking-[0.25em] text-[#D4AF37] font-semibold">
-                    Admissions Open 2025–26
+                    {t.admissionsCTA.kicker}
                   </span>
                 </div>
 
                 <h2 className="serif text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-[#FAF8F3]">
-                  Begin Your Child's Journey of
+                  {t.admissionsCTA.titleLine1}
                   <br />
-                  <span className="text-[#D4AF37] text-soft-glow inline-block">Faith and Knowledge</span>
+                  <span className="text-[#D4AF37] text-soft-glow inline-block">{t.admissionsCTA.titleLine2}</span>
                 </h2>
 
                 <p className="text-base sm:text-lg text-[#FAF8F3]/85 max-w-2xl leading-relaxed">
-                  Join the Alqalam family in Sector 2, Khalabat Township (KTS), Haripur. We welcome applications from Playgroup through Class 5th and the specialized Hifz-ul-Quran program.
+                  {t.admissionsCTA.description}
                 </p>
 
                 {/* Checklist */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                   <div className="flex items-center gap-2 text-sm text-[#FAF8F3]/90 transition-transform duration-300 hover:translate-x-1.5 cursor-default">
                     <CheckCircle2 size={16} className="text-[#D4AF37] shrink-0" />
-                    <span>Limited seats per class for personalized care</span>
+                    <span>{t.admissionsCTA.check1}</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm text-[#FAF8F3]/90 transition-transform duration-300 hover:translate-x-1.5 cursor-default">
                     <CheckCircle2 size={16} className="text-[#D4AF37] shrink-0" />
-                    <span>Affordable fee structure & moral guidance</span>
+                    <span>{t.admissionsCTA.check2}</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm text-[#FAF8F3]/90 transition-transform duration-300 hover:translate-x-1.5 cursor-default">
                     <CheckCircle2 size={16} className="text-[#D4AF37] shrink-0" />
-                    <span>Safe campus & convenient Parent Pick & Drop</span>
+                    <span>{t.admissionsCTA.check3}</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm text-[#FAF8F3]/90 transition-transform duration-300 hover:translate-x-1.5 cursor-default">
                     <CheckCircle2 size={16} className="text-[#D4AF37] shrink-0" />
-                    <span>Interactive entrance assessment & interview</span>
+                    <span>{t.admissionsCTA.check4}</span>
                   </div>
                 </div>
               </div>
@@ -72,15 +74,18 @@ export const AdmissionsCTASection: React.FC = () => {
                   className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-sm bg-[#D4AF37] text-[#3A0505] font-bold text-xs uppercase tracking-widest hover:bg-[#F2C94C] hover:scale-[1.02] active:scale-95 transition-all duration-300 shadow-lg shadow-black/20 group select-none text-center"
                 >
                   <Phone size={16} className="transition-transform duration-300 group-hover:rotate-12" />
-                  <span>Call Admissions: {SITE_CONFIG.phone}</span>
+                  <span>{isUrdu ? `کال کریں: ${SITE_CONFIG.phone}` : t.admissionsCTA.callButton}</span>
                 </a>
 
                 <a
                   href="#contact"
                   className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-sm border border-[#FAF8F3]/60 text-[#FAF8F3] font-semibold text-xs uppercase tracking-widest hover:bg-white/10 hover:border-[#D4AF37] hover:scale-[1.02] active:scale-95 transition-all duration-300 select-none text-center group"
                 >
-                  <span>Request Prospectus & Visit</span>
-                  <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
+                  <span>{t.admissionsCTA.visitButton}</span>
+                  <ArrowRight
+                    size={14}
+                    className={`transition-transform duration-300 ${isUrdu ? 'group-hover:-translate-x-1 rotate-180' : 'group-hover:translate-x-1'}`}
+                  />
                 </a>
               </div>
             </div>

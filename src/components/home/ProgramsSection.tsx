@@ -1,13 +1,15 @@
 import React from 'react';
-import { BookOpen, GraduationCap, Scroll, UsersRound, ArrowRight } from 'lucide-react';
+import { BookOpen, GraduationCap, Scroll, UsersRound } from 'lucide-react';
 import { Container } from '../ui/Container';
 import { Section } from '../ui/Section';
 import { SectionHeading } from '../ui/SectionHeading';
 import { IslamicStar } from '../ui/GeometricDecoration';
 import { ScrollReveal } from '../ui/ScrollReveal';
-import { CORE_PROGRAMS } from '../../constants/siteData';
+import { useLanguage } from '../../context/LanguageContext';
 
 export const ProgramsSection: React.FC = () => {
+  const { t } = useLanguage();
+
   const getIcon = (id: string) => {
     switch (id) {
       case 'hifz-program':
@@ -29,9 +31,9 @@ export const ProgramsSection: React.FC = () => {
         {/* Section Heading with ScrollReveal */}
         <ScrollReveal direction="up" delay={0}>
           <SectionHeading
-            kicker="Academic & Spiritual Path"
-            title="Our Programs"
-            subtitle="Integrated educational tracks combining Quranic excellence, Islamic character, and contemporary national academic curricula."
+            kicker={t.programs.kicker}
+            title={t.programs.title}
+            subtitle={t.programs.subtitle}
             align="center"
             theme="light"
           />
@@ -39,7 +41,7 @@ export const ProgramsSection: React.FC = () => {
 
         {/* 4 Cards Grid with Staggered Soft Entrance */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {CORE_PROGRAMS.map((prog, idx) => (
+          {t.programs.items.map((prog, idx) => (
             <ScrollReveal key={prog.id} direction="up" delay={idx * 60} duration={550}>
               <div
                 className="bg-white rounded-sm p-7 border border-[#D4AF37]/30 card-depth-hover flex flex-col justify-between text-center group relative overflow-hidden h-full shadow-sm"
@@ -96,7 +98,7 @@ export const ProgramsSection: React.FC = () => {
           <div className="mt-12 text-center">
             <p className="text-sm text-[#666666] flex items-center justify-center gap-2">
               <IslamicStar size={12} color="#D4AF37" fill="#D4AF37" />
-              <span>Comprehensive syllabus designed according to modern pedagogical standards and Sunnah ethics.</span>
+              <span>{t.programs.curriculumNote}</span>
               <IslamicStar size={12} color="#D4AF37" fill="#D4AF37" />
             </p>
           </div>

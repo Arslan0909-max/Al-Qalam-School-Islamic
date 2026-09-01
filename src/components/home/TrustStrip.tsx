@@ -1,14 +1,16 @@
 import React from 'react';
-import { Award, BookOpen, HeartHandshake, ShieldCheck, Sparkles } from 'lucide-react';
 import { IslamicStar } from '../ui/GeometricDecoration';
 import { ScrollReveal } from '../ui/ScrollReveal';
+import { useLanguage } from '../../context/LanguageContext';
 
 export const TrustStrip: React.FC = () => {
+  const { t } = useLanguage();
+
   const highlights = [
-    { text: 'Spiritual Growth' },
-    { text: 'Academic Rigor' },
-    { text: 'Quranic Tahfeez' },
-    { text: 'Global Citizenship' },
+    { text: t.trustStrip.spiritualGrowth },
+    { text: t.trustStrip.academicRigor },
+    { text: t.trustStrip.quranicTahfeez },
+    { text: t.trustStrip.globalCitizenship },
   ];
 
   return (

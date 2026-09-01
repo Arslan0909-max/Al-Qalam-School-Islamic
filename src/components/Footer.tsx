@@ -1,12 +1,24 @@
 import React from 'react';
-import { Phone, Mail, MapPin, Clock, Facebook, Instagram, Youtube, MessageCircle, ArrowUp } from 'lucide-react';
-import { AlqalamLogoBadge, MosqueSkyline, IslamicStar, GoldDivider } from './ui/GeometricDecoration';
-import { NAV_ITEMS, CORE_PROGRAMS, SITE_CONFIG } from '../constants/siteData';
+import { Phone, Mail, MapPin, Clock, Facebook, Instagram, Youtube, ArrowUp } from 'lucide-react';
+import { AlqalamLogoBadge, MosqueSkyline, IslamicStar } from './ui/GeometricDecoration';
+import { SITE_CONFIG } from '../constants/siteData';
+import { useLanguage } from '../context/LanguageContext';
 
 export const Footer: React.FC = () => {
+  const { isUrdu, t } = useLanguage();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  const navLinks = [
+    { label: t.nav.home, href: '#home' },
+    { label: t.nav.about, href: '#about' },
+    { label: t.nav.programs, href: '#programs' },
+    { label: t.nav.whyUs, href: '#why-us' },
+    { label: t.nav.gallery, href: '#gallery' },
+    { label: t.nav.contact, href: '#contact' },
+  ];
 
   return (
     <footer className="relative bg-[#3A0505] text-[#FAF8F3] overflow-hidden border-t border-[#D4AF37]/40">
@@ -22,11 +34,11 @@ export const Footer: React.FC = () => {
           <div className="space-y-4">
             <AlqalamLogoBadge size="lg" variant="dark-bg" />
             <p className="text-sm text-[#FAF8F3]/80 leading-relaxed pt-2">
-              Alqalam Islamic School is committed to providing quality Islamic education and nurturing future leaders through academic excellence, Quranic literacy, and moral tarbiyah.
+              {t.footer.description}
             </p>
             <div className="pt-2">
               <span className="text-xs uppercase tracking-widest text-[#D4AF37] font-semibold block mb-3">
-                Connect With Us
+                {isUrdu ? 'سوشل میڈیا پر جڑیں' : 'Connect With Us'}
               </span>
               <div className="flex items-center gap-2.5">
                 <a
@@ -71,16 +83,18 @@ export const Footer: React.FC = () => {
           <div>
             <h4 className="serif text-xl font-bold text-[#FAF8F3] mb-4 flex items-center gap-2">
               <IslamicStar size={14} color="#D4AF37" fill="#D4AF37" />
-              Quick Links
+              {t.footer.quickLinks}
             </h4>
             <ul className="space-y-2.5 text-sm text-[#FAF8F3]/80">
-              {NAV_ITEMS.map((item) => (
+              {navLinks.map((item) => (
                 <li key={item.label}>
                   <a
                     href={item.href}
                     className="hover:text-[#D4AF37] transition-colors flex items-center gap-1.5 group"
                   >
-                    <span className="text-[#D4AF37] opacity-0 group-hover:opacity-100 transition-opacity">›</span>
+                    <span className="text-[#D4AF37] opacity-0 group-hover:opacity-100 transition-opacity">
+                      {isUrdu ? '‹' : '›'}
+                    </span>
                     <span>{item.label}</span>
                   </a>
                 </li>
@@ -92,29 +106,22 @@ export const Footer: React.FC = () => {
           <div>
             <h4 className="serif text-xl font-bold text-[#FAF8F3] mb-4 flex items-center gap-2">
               <IslamicStar size={14} color="#D4AF37" fill="#D4AF37" />
-              Programs
+              {t.footer.programsTitle}
             </h4>
             <ul className="space-y-2.5 text-sm text-[#FAF8F3]/80">
-              {CORE_PROGRAMS.map((prog) => (
+              {t.programs.items.map((prog) => (
                 <li key={prog.id}>
                   <a
                     href="#programs"
                     className="hover:text-[#D4AF37] transition-colors flex items-center gap-1.5 group"
                   >
-                    <span className="text-[#D4AF37] opacity-0 group-hover:opacity-100 transition-opacity">›</span>
+                    <span className="text-[#D4AF37] opacity-0 group-hover:opacity-100 transition-opacity">
+                      {isUrdu ? '‹' : '›'}
+                    </span>
                     <span>{prog.title}</span>
                   </a>
                 </li>
               ))}
-              <li>
-                <a
-                  href="#programs"
-                  className="hover:text-[#D4AF37] transition-colors flex items-center gap-1.5 group"
-                >
-                  <span className="text-[#D4AF37] opacity-0 group-hover:opacity-100 transition-opacity">›</span>
-                  <span>Extracurricular & Tarbiyah</span>
-                </a>
-              </li>
             </ul>
           </div>
 
@@ -122,7 +129,7 @@ export const Footer: React.FC = () => {
           <div>
             <h4 className="serif text-xl font-bold text-[#FAF8F3] mb-4 flex items-center gap-2">
               <IslamicStar size={14} color="#D4AF37" fill="#D4AF37" />
-              Contact Us
+              {t.footer.contactInfoTitle}
             </h4>
             <ul className="space-y-3.5 text-sm text-[#FAF8F3]/85">
               <li className="flex items-start gap-3">
@@ -131,15 +138,17 @@ export const Footer: React.FC = () => {
                   <a href={`tel:${SITE_CONFIG.phone}`} className="hover:text-[#D4AF37] font-medium transition-colors">
                     {SITE_CONFIG.phone}
                   </a>
-                  <p className="text-xs text-[#FAF8F3]/60">Main Office Line</p>
+                  <p className="text-xs text-[#FAF8F3]/60">{isUrdu ? 'مین رابطہ نمبر' : 'Main Office Line'}</p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin size={18} className="text-[#D4AF37] shrink-0 mt-0.5" />
                 <div>
-                  <span className="leading-snug block">{SITE_CONFIG.address}</span>
+                  <span className="leading-snug block">{isUrdu ? t.footer.campusLocation : SITE_CONFIG.address}</span>
                   {SITE_CONFIG.zipCode && (
-                    <span className="text-xs text-[#D4AF37]/85 block mt-0.5">Zip Code: {SITE_CONFIG.zipCode}</span>
+                    <span className="text-xs text-[#D4AF37]/85 block mt-0.5">
+                      {isUrdu ? `پوسٹل کوڈ: ${SITE_CONFIG.zipCode}` : `Zip Code: ${SITE_CONFIG.zipCode}`}
+                    </span>
                   )}
                 </div>
               </li>
@@ -157,7 +166,7 @@ export const Footer: React.FC = () => {
               <li className="flex items-start gap-3">
                 <Clock size={18} className="text-[#D4AF37] shrink-0 mt-0.5" />
                 <div>
-                  <span className="text-xs text-[#FAF8F3]/70">{SITE_CONFIG.timings}</span>
+                  <span className="text-xs text-[#FAF8F3]/70">{t.contact.timingsValue}</span>
                 </div>
               </li>
             </ul>
@@ -166,15 +175,15 @@ export const Footer: React.FC = () => {
 
         {/* Bottom Bar: Copyright & Back to Top */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#FAF8F3]/70">
-          <p>© {new Date().getFullYear()} Alqalam Islamic School. All Rights Reserved.</p>
+          <p>© {new Date().getFullYear()} {t.footer.allRightsReserved}</p>
           <div className="flex items-center gap-6">
-            <span>Traditional Values • Modern Excellence</span>
+            <span>{t.footer.tagline}</span>
             <button
               type="button"
               onClick={scrollToTop}
               className="inline-flex items-center gap-1.5 text-[#D4AF37] hover:underline cursor-pointer focus:outline-none"
             >
-              <span>Back to Top</span>
+              <span>{isUrdu ? 'اوپر جائیں' : 'Back to Top'}</span>
               <ArrowUp size={14} />
             </button>
           </div>
