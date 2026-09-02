@@ -172,7 +172,7 @@ export const TRANSLATIONS: { en: Translations; ur: Translations } = {
       headlineLine2: 'Building Excellence.',
       description:
         'Alqalam Islamic School is dedicated to providing quality education based on Islamic values, character building and academic excellence in Khalabat Township (KTS), Haripur.',
-      applyButton: 'Admissions Open 2025–26',
+      applyButton: 'Admissions Open 2026–27',
       exploreButton: 'Explore School',
       viewPosterButton: 'View Official Poster',
       badgeIslamic: 'Islamic',
@@ -181,12 +181,12 @@ export const TRANSLATIONS: { en: Translations; ur: Translations } = {
       badgeQualitySub: 'Education',
       badgeCharacter: 'Character',
       badgeCharacterSub: 'Building',
-      floatingAdmissions: 'Admissions Open 2025–26',
+      floatingAdmissions: 'Admissions Open 2026–27',
       floatingAdmissionsGrade: 'Playgroup to Class 5th',
       floatingHifz: 'Hifz-ul-Quran',
       floatingHifzSub: 'Nazra & Tajweed Program',
       modalTitle: 'Official Admission & School Poster',
-      modalSubtitle: 'Alqalam Islamic School — Academic Session 2025-26',
+      modalSubtitle: 'Alqalam Islamic School — Academic Session 2026-27',
       modalClose: 'Close Viewer',
     },
     trustStrip: {
@@ -278,7 +278,7 @@ export const TRANSLATIONS: { en: Translations; ur: Translations } = {
       ],
     },
     admissionsCTA: {
-      kicker: 'Admissions Open 2025–26',
+      kicker: 'Admissions Open 2026–27',
       titleLine1: "Begin Your Child's Journey of",
       titleLine2: 'Faith and Knowledge',
       description:
@@ -401,7 +401,7 @@ export const TRANSLATIONS: { en: Translations; ur: Translations } = {
       headlineLine2: 'شاندار تعلیمی سفر۔',
       description:
         'القلم اسلامک اسکول کھلابٹ ٹاؤن شپ (ہری پور) میں اسلامی اقدار، حفظ القرآن، بہترین اخلاق اور جدید معیاری عصری تعلیم کا قابلِ اعتماد ادارہ ہے۔',
-      applyButton: 'داخلے جاری ہیں 2025–26',
+      applyButton: 'داخلے جاری ہیں 2026–27',
       exploreButton: 'اسکول کا تعارف',
       viewPosterButton: 'آفیشل اشتہار دیکھیں',
       badgeIslamic: 'اسلامی',
@@ -410,12 +410,12 @@ export const TRANSLATIONS: { en: Translations; ur: Translations } = {
       badgeQualitySub: 'تعلیم',
       badgeCharacter: 'اخلاقی',
       badgeCharacterSub: 'تربیت',
-      floatingAdmissions: 'داخلے جاری ہیں 2025–26',
+      floatingAdmissions: 'داخلے جاری ہیں 2026–27',
       floatingAdmissionsGrade: 'پلے گروپ تا پنجم (5th)',
       floatingHifz: 'حفظ القرآن الکریم',
       floatingHifzSub: 'مع ناظرہ و تجوید کلاس',
       modalTitle: 'اسکول کا آفیشل داخلہ اشتہار',
-      modalSubtitle: 'القلم اسلامک اسکول — تعلیمی سیشن 2025-26',
+      modalSubtitle: 'القلم اسلامک اسکول — تعلیمی سیشن 2026-27',
       modalClose: 'اشتہار بند کریں',
     },
     trustStrip: {
@@ -507,7 +507,7 @@ export const TRANSLATIONS: { en: Translations; ur: Translations } = {
       ],
     },
     admissionsCTA: {
-      kicker: 'داخلے جاری ہیں 2025–26',
+      kicker: 'داخلے جاری ہیں 2026–27',
       titleLine1: 'اپنے بچے کے روشن تعلیمی سفر کا',
       titleLine2: 'آج ہی آغاز کریں',
       description:

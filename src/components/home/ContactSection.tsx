@@ -6,6 +6,7 @@ import { SectionHeading } from '../ui/SectionHeading';
 import { Button } from '../ui/Button';
 import { IslamicStar } from '../ui/GeometricDecoration';
 import { ScrollReveal } from '../ui/ScrollReveal';
+import { TurnstileVerification } from '../ui/TurnstileVerification';
 import { SITE_CONFIG } from '../../constants/siteData';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -22,6 +23,8 @@ export const ContactSection: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [tokenError, setTokenError] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData((prev) => ({
@@ -33,47 +36,76 @@ export const ContactSection: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // 1. Check for real security token
+    if (!turnstileToken) {
+      setTokenError(true);
+      return;
+    }
+
     setIsSubmitting(true);
     setErrorMessage(null);
 
     try {
-      // Send directly to the school's official email via FormSubmit AJAX service
-      const response = await fetch(`https://formsubmit.co/ajax/${SITE_CONFIG.email}`, {
+      // 2. Validate token on backend server via Cloudflare siteverify
+      const serverResponse = await fetch('/api/admission-inquiry', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          parentName: formData.parentName,
+          phone: formData.phone,
+          grade: formData.grade,
+          email: formData.email,
+          message: formData.message,
+          turnstileToken,
+        }),
+      });
+
+      const serverData = await serverResponse.json();
+
+      if (!serverResponse.ok || !serverData.success) {
+        throw new Error(serverData.error || 'Server anti-bot verification failed.');
+      }
+
+      // Optional: Asynchronously notify school mailbox via FormSubmit
+      fetch(`https://formsubmit.co/ajax/${SITE_CONFIG.email}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
         body: JSON.stringify({
-          _subject: `New Admission Inquiry: ${formData.parentName} (${formData.grade})`,
+          _subject: `New Verified Admission Inquiry: ${formData.parentName} (${formData.grade})`,
           'Parent / Guardian Name': formData.parentName,
           'Contact Number / Phone': formData.phone,
           'Grade / Class of Interest': formData.grade,
           'Parent Email': formData.email || 'Not provided',
           'Inquiry / Message': formData.message || 'No additional message provided',
+          'Cloudflare Turnstile Verified': 'Validated Server-Side (Human)',
           _template: 'table',
           _captcha: 'false',
         }),
-      });
+      }).catch((err) => console.warn('Email dispatch log:', err));
 
-      const data = await response.json();
-
-      if (response.ok || data.success === 'true' || data.success === true) {
-        setSubmitted(true);
-        setFormData({
-          parentName: '',
-          phone: '',
-          grade: '',
-          email: '',
-          message: '',
-        });
-      } else {
-        throw new Error(data.message || 'Failed to deliver email');
-      }
-    } catch (err: any) {
-      console.warn('Direct email submission notice:', err);
-      // Fallback: If network is offline or blocked, still confirm and provide instant mailto / phone
       setSubmitted(true);
+      setTurnstileToken(null);
+      setFormData({
+        parentName: '',
+        phone: '',
+        grade: '',
+        email: '',
+        message: '',
+      });
+    } catch (err: any) {
+      console.error('Submission error:', err);
+      setErrorMessage(
+        err.message ||
+          (isUrdu
+            ? 'فارم بھیجنے میں مسئلہ پیش آیا۔ براہِ کرم سیکیورٹی چیک دوبارہ مکمل کریں۔'
+            : 'Error submitting inquiry. Please complete the security check and try again.')
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -342,6 +374,22 @@ export const ContactSection: React.FC = () => {
                           onChange={handleChange}
                           placeholder={t.contact.messagePlaceholder}
                           className="w-full px-4 py-2.5 rounded-sm border border-slate-300 text-sm focus:outline-none focus:border-[#650B0B] focus:ring-1 focus:ring-[#650B0B] transition-all duration-200"
+                        />
+                      </div>
+
+                      {/* Real Official Cloudflare Turnstile Verification */}
+                      <div className="pt-2">
+                        <TurnstileVerification
+                          onVerify={(token) => {
+                            setTurnstileToken(token);
+                            if (token) setTokenError(false);
+                          }}
+                          hasError={tokenError}
+                          errorMessage={
+                            isUrdu
+                              ? 'براہِ کرم فارم جمع کروانے سے پہلے اینٹی بوٹ تصدیق مکمل کریں۔'
+                              : 'Please complete the anti-bot verification before submitting.'
+                          }
                         />
                       </div>
 
