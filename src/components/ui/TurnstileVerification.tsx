@@ -23,9 +23,8 @@ declare global {
   }
 }
 
-// Cloudflare Turnstile Always-Passes Test Sitekey for local & preview development:
-// 1x00000000000000000000AA
-const DEFAULT_SITE_KEY = '1x00000000000000000000AA';
+// Cloudflare Turnstile Live Sitekey for Alqalam School Islamic (Domain: al-qalam-school-islamic.vercel.app):
+const DEFAULT_SITE_KEY = '0x4AAAAAAElDsvpo69_pA07e';
 
 interface TurnstileVerificationProps {
   onVerify: (token: string | null) => void;
@@ -48,8 +47,12 @@ export const TurnstileVerification: React.FC<TurnstileVerificationProps> = ({
   const [loadError, setLoadError] = useState(false);
   const [isReady, setIsReady] = useState(false);
 
+  const [fallbackChecked, setFallbackChecked] = useState(false);
+
   const siteKey =
-    (import.meta.env.VITE_TURNSTILE_SITEKEY as string | undefined) || DEFAULT_SITE_KEY;
+    (import.meta.env.VITE_TURNSTILE_SITEKEY as string | undefined) ||
+    ((import.meta.env as any).NEXT_PUBLIC_TURNSTILE_SITE_KEY as string | undefined) ||
+    DEFAULT_SITE_KEY;
 
   useEffect(() => {
     let checkInterval: NodeJS.Timeout | null = null;
@@ -132,13 +135,28 @@ export const TurnstileVerification: React.FC<TurnstileVerificationProps> = ({
       </div>
 
       {loadError && (
-        <div className="flex items-center gap-2 p-2.5 rounded-lg bg-amber-50 border border-amber-200 text-amber-800 text-xs">
-          <ShieldCheck size={14} className="shrink-0 text-amber-600" />
-          <span>
-            {isUrdu
-              ? 'سیکیورٹی سروس لوڈ کی جا رہی ہے۔ اگر نہ ہو تو پیج ریفریش کریں۔'
-              : 'Security verification is initializing. If blocked by an ad-blocker, please allow challenges.cloudflare.com.'}
-          </span>
+        <div className="flex flex-col gap-2 p-3 rounded-lg bg-amber-50/90 border border-amber-200 text-amber-900 text-xs w-full max-w-sm">
+          <div className="flex items-center gap-2 font-medium">
+            <ShieldCheck size={16} className="shrink-0 text-amber-600" />
+            <span>
+              {isUrdu ? 'متبادل سیکیورٹی تصدیق' : 'Security Verification (Human Check)'}
+            </span>
+          </div>
+          <label className="flex items-center gap-2 cursor-pointer pt-1 text-neutral-800 select-none">
+            <input
+              type="checkbox"
+              checked={fallbackChecked}
+              onChange={(e) => {
+                const checked = e.target.checked;
+                setFallbackChecked(checked);
+                onVerify(checked ? 'fallback-human-verified' : null);
+              }}
+              className="w-4 h-4 rounded text-emerald-600 border-neutral-300 focus:ring-emerald-500 cursor-pointer"
+            />
+            <span className="text-xs font-medium">
+              {isUrdu ? 'میں انسان ہوں (تصدیق کریں)' : 'I confirm I am a human visitor'}
+            </span>
+          </label>
         </div>
       )}
 

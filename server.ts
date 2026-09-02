@@ -3,7 +3,10 @@ import path from 'path';
 import { createServer as createViteServer } from 'vite';
 
 async function verifyTurnstileToken(token: string, remoteIp?: string): Promise<{ success: boolean; errorCodes?: string[] }> {
-  const secretKey = process.env.TURNSTILE_SECRET_KEY || '1x0000000000000000000000000000000AA';
+  const secretKey =
+    process.env.TURNSTILE_SECRET ||
+    process.env.TURNSTILE_SECRET_KEY ||
+    '0x4AAAAAAElDsi3_VsYuHvL2pfKsrJrZwNY';
 
   try {
     const formData = new URLSearchParams();
