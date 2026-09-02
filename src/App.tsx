@@ -10,12 +10,16 @@ import { AdmissionsCTASection } from './components/home/AdmissionsCTASection';
 import { FacilitiesSection } from './components/home/FacilitiesSection';
 import { ContactSection } from './components/home/ContactSection';
 import { Footer } from './components/Footer';
+import { FloatingScrollIndicator } from './components/ui/FloatingScrollIndicator';
 
 function AppContent() {
   const { isTransitioning, isRevealing, isUrdu } = useLanguage();
 
   return (
     <div className="min-h-screen bg-[#FAF8F3] text-[#171717] flex flex-col font-sans selection:bg-[#D4AF37]/30 selection:text-[#3A0505] relative overflow-x-hidden">
+      {/* Floating Scroll-to-Top & Direction Indicator */}
+      <FloatingScrollIndicator />
+
       {/* 
         Maroon & Purple Royal Gradient Transition Screen (Apple-style processing experience)
         Eliminates harsh white flash with a rich, glowing atmosphere

@@ -110,22 +110,33 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 html {
+  scroll-behavior: smooth;
   scroll-padding-top: 5.5rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom Scrollbar */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Luxury Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 9px;
+  height: 9px;
 }
 ::-webkit-scrollbar-track {
   background: #FAF8F3;
 }
 ::-webkit-scrollbar-thumb {
-  background: #650B0B;
-  border-radius: 4px;
+  background: linear-gradient(180deg, #650B0B 0%, #3A0505 100%);
+  border-radius: 9999px;
+  border: 2px solid #FAF8F3;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #D4AF37;
+  background: linear-gradient(180deg, #F2C94C 0%, #D4AF37 100%);
 }
 
 @keyframes shimmerGlow {
@@ -239,3 +250,152 @@ html {
 .animate-ios-spinner {
   animation: spinnerRotate 700ms cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
+
+/* Floating Corner Logo Smooth Minimal Dock Transition */
+@keyframes logoCornerDock {
+  0% {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-logo-dock {
+  animation: logoCornerDock 300ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+/* Logo Bubble Soft Premium Bounce Animation */
+@keyframes logoBubbleBounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.88) translateY(-14px);
+  }
+  65% {
+    opacity: 0.98;
+    transform: scale(1.025) translateY(3px);
+  }
+  85% {
+    transform: scale(0.99) translateY(-1px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes logoBubbleBounceOut {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.9) translateY(-10px);
+  }
+}
+
+.animate-logo-bubble-in {
+  animation: logoBubbleBounceIn 380ms cubic-bezier(0.34, 1.35, 0.64, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.animate-logo-bubble-out {
+  animation: logoBubbleBounceOut 240ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+/* Subtle Golden Ambient Halo for Logo */
+@keyframes logoAuraPulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(212, 175, 55, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+  }
+}
+
+.animate-logo-aura {
+  animation: logoAuraPulse 2.8s ease-in-out infinite;
+}
+
+/* Physics-based Smooth Elastic Spring Keyframes for Navbar Items (Staggered Logo Collapse/Expand) */
+@keyframes headerItemExpandLTR {
+  0% {
+    opacity: 0;
+    transform: translate3d(-45px, 0, 0) scale(0.85);
+    filter: blur(4px);
+  }
+  65% {
+    opacity: 0.95;
+    transform: translate3d(6px, 0, 0) scale(1.03);
+    filter: blur(0px);
+  }
+  85% {
+    transform: translate3d(-2px, 0, 0) scale(0.99);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+@keyframes headerItemExpandRTL {
+  0% {
+    opacity: 0;
+    transform: translate3d(45px, 0, 0) scale(0.85);
+    filter: blur(4px);
+  }
+  65% {
+    opacity: 0.95;
+    transform: translate3d(-6px, 0, 0) scale(1.03);
+    filter: blur(0px);
+  }
+  85% {
+    transform: translate3d(2px, 0, 0) scale(0.99);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+@keyframes headerItemCollapseLTR {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0px);
+  }
+  30% {
+    transform: translate3d(4px, 0, 0) scale(1.01);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(-45px, 0, 0) scale(0.82);
+    filter: blur(5px);
+  }
+}
+
+@keyframes headerItemCollapseRTL {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0px);
+  }
+  30% {
+    transform: translate3d(-4px, 0, 0) scale(1.01);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(45px, 0, 0) scale(0.82);
+    filter: blur(5px);
+  }
+}
+
+
+

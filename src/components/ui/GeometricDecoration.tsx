@@ -127,7 +127,7 @@ export const MosqueSkyline: React.FC<{ className?: string }> = ({ className = ''
   );
 };
 
-// Authentic Alqalam School Logo Badge utilizing the official uploaded logo
+// Official Alqalam School Logo Badge utilizing the exact uploaded logo image
 export const AlqalamLogoBadge: React.FC<{
   size?: 'sm' | 'md' | 'lg' | 'xl' | 'custom';
   badgeSize?: number;
@@ -135,7 +135,7 @@ export const AlqalamLogoBadge: React.FC<{
   tuckText?: boolean;
   className?: string;
   variant?: 'light-bg' | 'dark-bg';
-}> = ({ size = 'md', badgeSize, showText = true, tuckText = false, className = '', variant = 'light-bg' }) => {
+}> = ({ size = 'md', badgeSize, showText = false, tuckText = false, className = '', variant = 'light-bg' }) => {
   const sizeMap = {
     sm: { badge: 48, title: 'text-base', sub: 'text-[10px]' },
     md: { badge: 64, title: 'text-lg', sub: 'text-[11px]' },
@@ -149,15 +149,15 @@ export const AlqalamLogoBadge: React.FC<{
 
   return (
     <div className={`inline-flex items-center gap-3.5 select-none relative ${className}`}>
-      {/* 8-Pointed Star Official Logo Badge (Foreground layer so text folds behind it) */}
+      {/* Exact Original Alqalam School Logo Image */}
       <div
-        className="relative z-20 shrink-0 flex items-center justify-center filter drop-shadow-md transition-transform duration-300 hover:scale-105"
+        className="relative z-20 shrink-0 flex items-center justify-center transition-transform duration-300 ease-out hover:scale-[1.03]"
         style={{ width: actualBadgeWidth, height: actualBadgeWidth }}
       >
         <img
-          src={schoolLogoImg || "/logo.png"}
-          alt="Alqalam Islamic School Logo"
-          className="w-full h-full object-contain filter drop-shadow-sm select-none"
+          src="/assets/alqalam-logo.png"
+          alt="Alqalam Islamic School"
+          className="w-full h-full object-contain select-none"
           referrerPolicy="no-referrer"
           onError={(e) => {
             const target = e.currentTarget;
@@ -168,17 +168,17 @@ export const AlqalamLogoBadge: React.FC<{
         />
       </div>
 
-      {/* Brand Text representation (Folds softly and bounces behind the logo badge on scroll) */}
+      {/* Optional contextual text if requested */}
       {showText && (
         <div
-          className={`flex flex-col relative z-10 whitespace-nowrap transition-all duration-500 origin-left ${
+          className={`flex flex-col relative z-10 whitespace-nowrap transition-all duration-300 origin-left ${
             tuckText
-              ? '-translate-x-[45px] opacity-0 scale-90 max-w-0 pointer-events-none -ml-2'
+              ? '-translate-x-4 opacity-0 scale-95 max-w-0 pointer-events-none -ml-2'
               : 'translate-x-0 opacity-100 scale-100 max-w-[240px]'
           }`}
           style={{
-            transitionTimingFunction: 'cubic-bezier(0.34, 1.45, 0.64, 1)',
-            transitionDelay: tuckText ? '0ms' : '120ms',
+            transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
+            transitionDelay: tuckText ? '0ms' : '80ms',
           }}
         >
           <span

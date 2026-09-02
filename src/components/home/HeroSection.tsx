@@ -96,10 +96,10 @@ export const HeroSection: React.FC = () => {
                   icon={
                     <ArrowRight
                       size={16}
-                      className={`transition-transform duration-200 ${isUrdu ? 'group-hover:-translate-x-1 rotate-180' : 'group-hover:translate-x-1'}`}
+                      className={`transition-transform duration-300 ease-out ${isUrdu ? 'group-hover:-translate-x-1.5 rotate-180' : 'group-hover:translate-x-1.5'}`}
                     />
                   }
-                  className="px-7 sm:px-8 py-3.5 sm:py-4 text-xs sm:text-[13px] font-bold uppercase tracking-widest shadow-xl hover:shadow-2xl hover:scale-[1.02] active:scale-95 transition-all duration-300"
+                  className="px-7 sm:px-8 py-3.5 sm:py-4 text-xs sm:text-[13px] font-bold uppercase tracking-widest group shadow-[0_8px_25px_rgba(58,5,5,0.4)] hover:shadow-[0_12px_32px_rgba(212,175,55,0.45)] hover:scale-[1.03] active:scale-[0.97] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
                 >
                   {t.hero.applyButton}
                 </PrimaryButton>
@@ -108,7 +108,7 @@ export const HeroSection: React.FC = () => {
                   size="lg"
                   asLink
                   href="#about"
-                  className="px-6 sm:px-7 py-3.5 sm:py-4 text-xs sm:text-[13px] font-bold uppercase tracking-widest bg-white/90 lg:bg-transparent hover:bg-[#650B0B] hover:text-[#FAF8F3] hover:scale-[1.02] active:scale-95 transition-all duration-300 border border-[#D4AF37]"
+                  className="px-6 sm:px-7 py-3.5 sm:py-4 text-xs sm:text-[13px] font-bold uppercase tracking-widest bg-white/90 lg:bg-transparent hover:bg-[#650B0B] hover:text-[#FAF8F3] hover:scale-[1.03] active:scale-[0.97] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] border border-[#D4AF37] shadow-sm hover:shadow-[0_8px_24px_rgba(101,11,11,0.3)]"
                 >
                   {t.hero.exploreButton}
                 </SecondaryButton>

@@ -1,0 +1,282 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1100" width="1000" height="1100">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="bgGrad" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#961720" />
+      <stop offset="45%" stop-color="#6E0D16" />
+      <stop offset="85%" stop-color="#3F070C" />
+      <stop offset="100%" stop-color="#2D0408" />
+    </radialGradient>
+
+    <!-- Gold Pen Gradient -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE853" />
+      <stop offset="30%" stop-color="#FFD200" />
+      <stop offset="70%" stop-color="#F5B300" />
+      <stop offset="100%" stop-color="#D99000" />
+    </linearGradient>
+
+    <linearGradient id="goldPageGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFE853" />
+      <stop offset="100%" stop-color="#EAA000" />
+    </linearGradient>
+
+    <!-- Drop Shadow Filter -->
+    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&amp;family=Noto+Naskh+Arabic:wght@700&amp;display=swap');
+    .serif-title {
+      font-family: 'Cinzel', 'Times New Roman', serif;
+      font-weight: 800;
+      fill: #FFFFFF;
+    }
+    .serif-sub {
+      font-family: 'Cinzel', 'Times New Roman', serif;
+      font-weight: 700;
+      fill: #FFFFFF;
+      letter-spacing: 0.38em;
+    }
+    .arabic-sub {
+      font-family: 'Noto Naskh Arabic', 'Traditional Arabic', 'Segoe UI', sans-serif;
+      font-weight: 700;
+      fill: #FFFFFF;
+    }
+  </style>
+
+  <!-- 8-POINTED STAR MEDALLION (RUB EL HIZB) -->
+  <g id="starMedallion" filter="url(#softShadow)">
+    <!-- Outer Star Path with dark maroon border -->
+    <!-- Point coordinates for 8-pointed star with inset notches -->
+    <!-- Center (500, 540), Outer Radius ~ 480, Inner Radius ~ 350 -->
+    <path d="
+      M 500 20
+      L 588 168
+      L 765 85
+      L 745 285
+      L 925 365
+      L 790 515
+      L 925 665
+      L 745 745
+      L 765 945
+      L 588 862
+      L 500 1010
+      L 412 862
+      L 235 945
+      L 255 745
+      L 75 665
+      L 210 515
+      L 75 365
+      L 255 285
+      L 235 85
+      L 412 168
+      Z
+    " fill="#38080E" stroke="#250407" stroke-width="12" stroke-linejoin="round" />
+
+    <!-- Inner White Stroke Border following star shape -->
+    <path d="
+      M 500 48
+      L 580 182
+      L 740 108
+      L 722 288
+      L 885 360
+      L 765 498
+      L 885 638
+      L 722 710
+      L 740 890
+      L 580 818
+      L 500 952
+      L 420 818
+      L 260 890
+      L 278 710
+      L 115 638
+      L 235 498
+      L 115 360
+      L 278 288
+      L 260 108
+      L 420 182
+      Z
+    " fill="url(#bgGrad)" stroke="#FFFFFF" stroke-width="8" stroke-linejoin="round" />
+
+    <!-- Thin inner dark line inside white border -->
+    <path d="
+      M 500 64
+      L 574 190
+      L 724 122
+      L 708 290
+      L 860 358
+      L 748 488
+      L 860 622
+      L 708 688
+      L 724 856
+      L 574 790
+      L 500 916
+      L 426 790
+      L 276 856
+      L 292 688
+      L 140 622
+      L 252 488
+      L 140 358
+      L 292 290
+      L 276 122
+      L 426 190
+      Z
+    " fill="none" stroke="#280306" stroke-width="5" stroke-linejoin="round" />
+  </g>
+
+  <!-- ================= LOGO INNER CONTENT ================= -->
+  
+  <!-- 1. GOLD FOUNTAIN PEN NIB (Top Center) -->
+  <g id="penNib" transform="translate(0, 10)">
+    <!-- Pen Nib Top Sphere/Ball -->
+    <circle cx="500" cy="135" r="14" fill="url(#goldGrad)" />
+    <!-- Pen Nib Body -->
+    <path d="
+      M 500 148
+      C 490 200, 420 280, 412 300
+      L 452 380
+      L 548 380
+      L 588 300
+      C 580 280, 510 200, 500 148
+      Z
+    " fill="url(#goldGrad)" stroke="#C88200" stroke-width="3" stroke-linejoin="round" />
+
+    <!-- Pen Nib Breather Hole & Center Slit -->
+    <circle cx="500" cy="270" r="12" fill="#5A0810" />
+    <path d="M 500 150 L 500 258" stroke="#5A0810" stroke-width="5" stroke-linecap="round" />
+
+    <!-- Pen Nib Base Horizontal Bands -->
+    <rect x="448" y="392" width="104" height="12" rx="3" fill="url(#goldGrad)" />
+    <rect x="448" y="414" width="104" height="14" rx="3" fill="url(#goldGrad)" />
+  </g>
+
+  <!-- 2. OPEN BOOK PAGES (Golden and White Sweeps) -->
+  <g id="openBookPages">
+    <!-- LEFT SIDE PAGES -->
+    <!-- Left Top Outer Blade (Golden) -->
+    <path d="
+      M 345 340
+      L 260 480
+      C 275 490, 340 475, 415 515
+      C 445 530, 460 550, 470 575
+      C 440 540, 395 510, 340 500
+      L 380 430
+      C 340 435, 305 450, 275 465
+      L 345 340
+      Z
+    " fill="url(#goldPageGrad)" stroke="#B87500" stroke-width="2" />
+
+    <!-- Left Upper Main Swoop -->
+    <path d="
+      M 480 580
+      C 435 520, 350 470, 240 520
+      C 310 495, 385 500, 440 535
+      C 460 550, 472 565, 480 580
+      Z
+    " fill="url(#goldPageGrad)" />
+
+    <!-- Left Middle Swoop (Golden Yellow) -->
+    <path d="
+      M 475 600
+      C 415 545, 310 520, 200 540
+      C 285 530, 380 545, 435 580
+      Z
+    " fill="url(#goldPageGrad)" />
+
+    <!-- Left Bottom Page (White) -->
+    <path d="
+      M 465 625
+      C 390 580, 300 570, 250 595
+      C 310 578, 390 580, 445 615
+      Z
+    " fill="#FFFFFF" />
+
+    <!-- RIGHT SIDE PAGES (Mirrored) -->
+    <!-- Right Top Outer Blade (Golden) -->
+    <path d="
+      M 655 340
+      L 740 480
+      C 725 490, 660 475, 585 515
+      C 555 530, 540 550, 530 575
+      C 560 540, 605 510, 660 500
+      L 620 430
+      C 660 435, 695 450, 725 465
+      L 655 340
+      Z
+    " fill="url(#goldPageGrad)" stroke="#B87500" stroke-width="2" />
+
+    <!-- Right Upper Main Swoop -->
+    <path d="
+      M 520 580
+      C 565 520, 650 470, 760 520
+      C 690 495, 615 500, 560 535
+      C 540 550, 528 565, 520 580
+      Z
+    " fill="url(#goldPageGrad)" />
+
+    <!-- Right Middle Swoop (Golden Yellow) -->
+    <path d="
+      M 525 600
+      C 585 545, 690 520, 800 540
+      C 715 530, 620 545, 565 580
+      Z
+    " fill="url(#goldPageGrad)" />
+
+    <!-- Right Bottom Page (White) -->
+    <path d="
+      M 535 625
+      C 610 580, 700 570, 750 595
+      C 690 578, 610 580, 555 615
+      Z
+    " fill="#FFFFFF" />
+  </g>
+
+  <!-- 3. ARABIC CALLIGRAPHY 'القلم' IN CENTER -->
+  <g id="calligraphyAlQalam" transform="translate(500, 480)">
+    <!-- White Calligraphy shape for 'Al-Qalam' -->
+    <g fill="#FFFFFF">
+      <!-- Alif & Lam vertical stems -->
+      <path d="M -55 -40 C -52 -10, -50 15, -45 25 C -42 15, -40 -20, -42 -40 Z" />
+      <path d="M -30 -45 C -28 -15, -25 15, -20 28 C -15 15, -12 -25, -15 -45 Z" />
+      
+      <!-- Qaf and Lam Connection -->
+      <path d="M -48 20 C -20 32, 10 30, 30 12 C 45 -2, 55 -25, 45 -40 C 35 -50, 15 -40, 20 -20 C 25 -5, 38 5, 20 18 C 0 28, -25 24, -45 15 Z" />
+
+      <!-- Diacritic Dots for Qaf -->
+      <circle cx="15" cy="-45" r="4.5" />
+      <circle cx="28" cy="-48" r="4.5" />
+
+      <!-- Meem (م) and its downward flowing tail -->
+      <path d="
+        M -2 24
+        C 15 20, 25 35, 18 50
+        C 10 60, -5 55, -8 40
+        C -10 30, -5 22, -2 24
+        Z
+      " />
+      <!-- Graceful Meem Tail extending down between book pages -->
+      <path d="
+        M 8 46
+        C 0 70, -12 110, -5 160
+        C -2 135, 4 95, 14 55
+        Z
+      " />
+    </g>
+  </g>
+
+  <!-- 4. ARABIC TEXT 'اسلامك سكول' -->
+  <text x="500" y="675" text-anchor="middle" class="arabic-sub" font-size="44" letter-spacing="0.04em">اسلامك سكول</text>
+
+  <!-- 5. ENGLISH TITLE 'ALQALAM' -->
+  <!-- Bold high-contrast white serif typography -->
+  <text x="500" y="800" text-anchor="middle" class="serif-title" font-size="96" letter-spacing="0.06em">ALQALAM</text>
+  
+  <!-- Subtle flourish below QALAM if needed -->
+  <path d="M 420 812 C 460 828, 510 828, 580 812 C 530 822, 470 822, 420 812 Z" fill="#FFFFFF" opacity="0.85" />
+
+  <!-- 6. SUBTITLE 'ISLAMIC SCHOOL' -->
+  <text x="505" y="855" text-anchor="middle" class="serif-sub" font-size="28">ISLAMIC SCHOOL</text>
+</svg>
